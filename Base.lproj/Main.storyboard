@@ -37,6 +37,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleLabel" destination="M6z-bp-9Po" id="abF-TZ-RvR"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="ugW-Ah-1FH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,7 +49,7 @@
                     <navigationItem key="navigationItem" title="Mijn dag" id="ohL-iv-iyB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PrX-6S-Sej">
                             <connections>
-                                <segue destination="gQl-KT-oEO" kind="presentation" id="Cmg-UI-l1l"/>
+                                <segue destination="gQl-KT-oEO" kind="presentation" identifier="AddItem" id="Cmg-UI-l1l"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -140,7 +141,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lDo-nP-Mqy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+            <point key="canvasLocation" x="1130" y="587"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ugW-Ah-1FH"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titlefField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -35,8 +35,21 @@ class ViewController: UIViewController {
             os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
             return
         }
+
+        let title = titlefField.text ?? ""
         
-        activity = Activity(title: "Hoi", date_from: "11:00", date_to: "13:00")
+        activity = Activity(title: title, date_from: "11:00", date_to: "13:00")
+    }
+
+    //MARK: UITextFieldDelegate
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.resignFirstResponder()
+            return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveButton.isEnabled = false
     }
 }
 
