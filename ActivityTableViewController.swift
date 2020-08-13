@@ -101,8 +101,18 @@ class ActivityTableViewController: UITableViewController {
         var activity3 = Activity(title: "Test", date_from: "11:00", date_to: "13:00")
         
         self.activities += [activity1, activity2, activity3]
-        
-        
+    }
+    
+    //MARK: Actions
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? ViewController, let activity = sourceViewController.activity {
+            let newIndexPath = IndexPath(row: activities.count, section: 0)
+            
+            activities.append(activity)
+            
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
     }
 
 }
