@@ -11,6 +11,8 @@ import os.log
 
 class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titlefField: UITextField!
+    @IBOutlet weak var fromField: UITextField!
+    @IBOutlet weak var toField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     //MARK: Properties
@@ -25,6 +27,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         if let activity = activity {
             self.titlefField.text = activity.title
+            self.fromField.text = activity.date_from
+            self.toField.text = activity.date_to
         }
     }
 
@@ -40,9 +44,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
-        let title = titlefField.text ?? ""
+        let title = self.titlefField.text ?? ""
+        let from = self.fromField.text ?? ""
+        let to = self.toField.text ?? ""
         
-        activity = Activity(title: title, date_from: "11:00", date_to: "13:00")
+        activity = Activity(title: title, date_from: from, date_to: to)
     }
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {

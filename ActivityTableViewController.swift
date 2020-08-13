@@ -44,6 +44,7 @@ class ActivityTableViewController: UITableViewController {
         let activity = self.activities[indexPath.row]
         
         cell.titleLabel.text = activity.title
+        cell.dateLabel.text = activity.date_from + " tot " + activity.date_to
 
         // Configure the cell...
 
