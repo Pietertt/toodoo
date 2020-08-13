@@ -45,6 +45,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
         activity = Activity(title: title, date_from: "11:00", date_to: "13:00")
     }
     
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        let isPresentingInAddActivityMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddActivityMode {
+            dismiss(animated: true, completion: nil)
+        }
+        
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("Oopsie")
+        }
+    }
     
     
 

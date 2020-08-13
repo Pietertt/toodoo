@@ -90,7 +90,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Voeg een activiteit toe" id="7Ig-SB-8e5">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aAB-9G-juG"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aAB-9G-juG">
+                            <connections>
+                                <action selector="cancel:" destination="BYZ-38-t0r" id="nx6-jZ-TUn"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="MSB-7l-f9q">
                             <connections>
                                 <segue destination="K1B-mp-uRe" kind="unwind" unwindAction="unwindToMealListWithSender:" id="op6-iu-zKo"/>
@@ -145,6 +149,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ugW-Ah-1FH"/>
+        <segue reference="78L-5A-Fdq"/>
     </inferredMetricsTieBreakers>
 </document>
