@@ -82,15 +82,37 @@ class ActivityTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? ""){
+        case "AddItem":
+            os_log("Adding a new activity", log: OSLog.default, type: .debug)
+        case "ShowDetail":
+        
+        guard let viewController = segue.destination as? ViewController else {
+            fatalError("Oopsie")
+        }
+        
+        guard let selectedActivityCell = sender as? ActivityTableViewCell else {
+            fatalError("Oopsie")
+        }
+        
+        guard let indexPath = tableView.indexPath(for: selectedActivityCell) else {
+            fatalError("Oopsie")
+        }
+        
+        let selectedActivity = activities[indexPath.row]
+        viewController.activity = selectedActivity
+        
+        default:
+        fatalError("Oopsie")
+        }
     }
-    */
+    
     
     //MARK: Private methods
     
@@ -107,12 +129,20 @@ class ActivityTableViewController: UITableViewController {
     //MARK: Actions
     
     @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        
         if let sourceViewController = sender.source as? ViewController, let activity = sourceViewController.activity {
-            let newIndexPath = IndexPath(row: activities.count, section: 0)
             
-            activities.append(activity)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                activities[selectedIndexPath.row] = activity
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            } else {
             
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+                let newIndexPath = IndexPath(row: activities.count, section: 0)
+                
+                activities.append(activity)
+                
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
 

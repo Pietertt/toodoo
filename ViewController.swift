@@ -22,6 +22,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if let activity = activity {
+            self.titlefField.text = activity.title
+        }
     }
 
     //MARK: Actions
@@ -40,6 +44,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         activity = Activity(title: title, date_from: "11:00", date_to: "13:00")
     }
+    
+    
+    
 
     //MARK: UITextFieldDelegate
 
