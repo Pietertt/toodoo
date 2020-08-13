@@ -18,8 +18,10 @@ class ActivityTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = editButtonItem
+        
+            self.activities = self.loadActivities()
+        
 
-        self.loadSampleActivities()
     }
 
     // MARK: - Table view data source
@@ -63,6 +65,7 @@ class ActivityTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             self.activities.remove(at: indexPath.row)
+            self.saveActivities()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -127,6 +130,21 @@ class ActivityTableViewController: UITableViewController {
         var activity3 = Activity(title: "Test", date_from: "11:00", date_to: "13:00")
         
         self.activities += [activity1, activity2, activity3]
+        
+    }
+    
+    private func saveActivities(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(activities, toFile: Activity.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("Activities successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save Activities...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadActivities() -> [Activity]{
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Activity.ArchiveURL.path) as! [Activity]
     }
     
     //MARK: Actions
@@ -146,6 +164,8 @@ class ActivityTableViewController: UITableViewController {
                 
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            
+            self.saveActivities()
         }
     }
 
