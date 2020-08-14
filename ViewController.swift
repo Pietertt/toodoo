@@ -25,6 +25,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+        
         if let activity = activity {
             self.titlefField.text = activity.title
             self.fromField.text = activity.date_from

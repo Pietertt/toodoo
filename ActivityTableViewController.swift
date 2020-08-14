@@ -177,6 +177,8 @@ class ActivityTableViewController: UITableViewController {
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
             
+            navigationController?.navigationBar.prefersLargeTitles = true
+            
             self.saveActivities()
         }
     }
