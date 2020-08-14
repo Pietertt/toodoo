@@ -21,6 +21,10 @@ class ActivityTableViewController: UITableViewController {
         
             self.activities = self.loadActivities()
         
+        tableView.tableFooterView = UIView()
+        
+        navigationController?.navigationBar.barTintColor = UIColor.magenta
+        
 
     }
 
