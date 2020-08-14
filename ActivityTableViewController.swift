@@ -21,9 +21,16 @@ class ActivityTableViewController: UITableViewController {
         
             self.activities = self.loadActivities()
         
-        tableView.tableFooterView = UIView()
+        navigationController?.navigationBar.tintColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
+        navigationController?.navigationBar.barTintColor = UIColor(red: 0.98, green: 0.35, blue: 0.31, alpha: 1.00)
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)]
+//
+        navigationController?.navigationBar.prefersLargeTitles = true
         
-        navigationController?.navigationBar.barTintColor = UIColor.magenta
+        self.navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
+        tableView.tableFooterView = UIView()
+
         
 
     }
@@ -173,5 +180,4 @@ class ActivityTableViewController: UITableViewController {
             self.saveActivities()
         }
     }
-
 }
